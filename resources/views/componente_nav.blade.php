@@ -1,27 +1,38 @@
   <!-- MENU -->
+  <style>
+      #btn {
+        margin-left: 3px;
+  } 
+  </style>
   <div class="pusher">
         <div class="ui segment">
           
           <div class="ui  secondary pointing menu">
-            <a href="/" class="yellow item active">
+          <a href="/" @if( $current == "inicio") class="yellow item active" @else class="yellow item" @endif>
               Inicio
             </a>
-            <a href="/categorias" class=" orange item">
-              Frota de Carros
+            <a href="/categorias" @if( $current == "categorias") class="red item active" @else class="red item" @endif>
+              Categorias
             </a>
-            <a href="/marcas"  class="red item">
+            <a href="/marcas"  @if( $current == "marcas") class="blue item active" @else class="blue item" @endif>
               Marcas
             </a>
-            <a href=""  class="red item">
+            <a href="/produtos" @if( $current == "produtos") class="olive item active" @else class="olive item" @endif>
+              Produtos e Serviços
+            </a>
+            <a  @if( $current == "sobre") class="teal item active" @else class="teal item" @endif>
               Sobre
             </a>
-            <a  class="teal item ">
+            <a  @if( $current == "contato") class="pink item active" @else class="pink item" @endif>
             Contato
             </a>
-            <div class="right item">
-                  <a class="ui green basic button">Logar</a>
+            <div class="right menu">
+                <div class="item">
+                  <a href="/login" class="ui red basic button">Registrar</a>
+                  <a href="/registar" id="btn" class="ui green basic button">Logar</a>
+                </div>
                    
-                  <a class="ui red basic button">Registrar</a>
           </div>
+          
           </div>
         </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Categoria;
 
 class ControladorCategorias extends Controller
 {
@@ -13,7 +14,8 @@ class ControladorCategorias extends Controller
      */
     public function index()
     {
-        return view('categorias');
+        $cats = Categoria::all();
+        return view('categorias', compact('cats'));
     }
 
     /**
@@ -23,7 +25,7 @@ class ControladorCategorias extends Controller
      */
     public function create()
     {
-        //
+        return view('novacategoria');
     }
 
     /**
@@ -34,9 +36,11 @@ class ControladorCategorias extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cat = new Categoria();
+        $cat->nome = $request->input('nomeCategoria');
+        $cat->save();
+        return redirect('/categorias');
     }
-
     /**
      * Display the specified resource.
      *
@@ -56,7 +60,11 @@ class ControladorCategorias extends Controller
      */
     public function edit($id)
     {
-        //
+        $cat = Categoria::find($id);
+        if(isset($cat)){
+            return view('editarcategoria', compact('cat'));
+        }
+        return redirect('/categorias');
     }
 
     /**
@@ -68,7 +76,12 @@ class ControladorCategorias extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cat = Categoria::find($id);
+        if(isset($cat)){
+            $cat->nome = $request->input('nomeCategoria');
+            $cat->save();
+        }
+        return redirect('/categorias');
     }
 
     /**
@@ -79,6 +92,10 @@ class ControladorCategorias extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cat = Categoria::find($id);
+        if(isset($cat)){
+            $cat->delete();
+        }
+        return redirect('/categorias');
     }
 }

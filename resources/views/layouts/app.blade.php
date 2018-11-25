@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="ui main container">       
-        @component('componente_nav')
+        @component('componente_nav', ["current" => $current])
             
         @endcomponent
            <main role="main">
